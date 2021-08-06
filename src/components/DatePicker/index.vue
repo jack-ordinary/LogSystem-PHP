@@ -4,7 +4,7 @@
  * @Author: JackLong
  * @Date: 2021-02-07 13:33:04
  * @LastEditors: JackLong
- * @LastEditTime: 2021-08-05 14:27:54
+ * @LastEditTime: 2021-08-06 10:20:06
 -->
 <template>
   <div class="date-picker">
@@ -37,6 +37,7 @@ export default {
               start.setTime(start.getTime() - 3600 * 1000 * 24 * 0)
               end.setTime(end.getTime() + 3600 * 1000 * 24 * 1)
               picker.$emit('pick', [start, end])
+              // 测试
             }
           },
           {
