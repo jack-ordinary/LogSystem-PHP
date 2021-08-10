@@ -4,7 +4,7 @@
  * @Author: JackLong
  * @Date: 2021-02-07 13:33:04
  * @LastEditors: JackLong
- * @LastEditTime: 2021-08-06 10:43:38
+ * @LastEditTime: 2021-08-10 10:10:14
 -->
 <template>
   <div class="date-picker">
@@ -30,12 +30,34 @@ export default {
       pickerOptions: {
         shortcuts: [
           {
-            text: '当天',
+            text: '现在',
             onClick(picker) {
               const end = new Date()
               const start = new Date()
               start.setTime(start.getTime() - 3600 * 1000 * 24 * 0)
               end.setTime(end.getTime() + 3600 * 1000 * 24 * 1)
+              picker.$emit('pick', [start, end])
+              // 再次测试-twice
+            }
+          },
+          {
+            text: '当天',
+            onClick(picker) {
+              const end = new Date(new Date().setHours(0, 0, 0, 0))
+              const start = new Date(new Date().setHours(0, 0, 0, 0))
+              start.setTime(start.getTime())
+              end.setTime(end.getTime() + 3600 * 1000 * 24 * 1 - 1)
+              picker.$emit('pick', [start, end])
+              // 再次测试-twice
+            }
+          },
+          {
+            text: '前一天',
+            onClick(picker) {
+              const end = new Date(new Date().setHours(0, 0, 0, 0))
+              const start = new Date(new Date().setHours(0, 0, 0, 0))
+              start.setTime(start.getTime() - 3600 * 1000 * 24 * 1)
+              end.setTime(end.getTime() - 1)
               picker.$emit('pick', [start, end])
               // 再次测试-twice
             }
